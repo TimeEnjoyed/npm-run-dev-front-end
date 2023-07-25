@@ -52,7 +52,7 @@ function App() {
 
     async function retrieveItems() {
         try {
-            const response = await fetch("http://localhost:3000/api/vault/items");
+            const response = await fetch("{process.env.HOSTNAME}/api/vault/items");
             const { messages }: { messages: VaultItem[] } = await response.json();
 
             setItems(messages);
@@ -64,7 +64,7 @@ function App() {
 
     async function onAccept(vaultItemId: number) {
         try {
-            const response = await fetch("http://localhost:3000/api/vault/approve", {
+            const response = await fetch("{process.env.HOSTNAME}/api/vault/approve", {
                 method: "POST",
                 body: JSON.stringify({
                     id: vaultItemId,
@@ -83,7 +83,7 @@ function App() {
 
     async function onDecline(vaultItemId: number) {
         try {
-            const response = await fetch("http://localhost:3000/api/vault/reject", {
+            const response = await fetch("{process.env.HOSTNAME}/api/vault/reject", {
                 method: "POST",
                 body: JSON.stringify({
                     id: vaultItemId,
